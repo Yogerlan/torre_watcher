@@ -1,0 +1,34 @@
+<h1>Job Opportunities</h1>
+
+<div>
+    <h5>Filters</h5>
+    <div>
+        <select class="form-select" aria-label="Default select example" (change)="onLanguageChange($event)">
+            <option *ngFor="let language of languages" [value]="language">{{language}}</option>
+        </select>
+    </div>
+    <div>
+        <select class="form-select" aria-label="Default select example" (change)="onSizeChange($event)">
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+              <option value="4">Four</option>
+              <option value="5">Five</option>
+        </select>
+    </div>
+</div>
+
+<div>
+    <ul>
+        <li *ngFor="let opportunity of opportunities; let i = index">
+            <div class="card" style="width: 18rem;">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title">{{opportunity.objective}}</h5>
+                    <p class="card-text">{{opportunity.tagline}}</p>
+                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
