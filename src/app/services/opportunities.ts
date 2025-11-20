@@ -1,15 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 
-export enum Languages {
-  EN = 'en',
-  ES = 'es',
-}
-
 export interface QueryParams {
   currency?: string
   periodicity?: string
-  lang?: Languages
+  lang?: string
   size?: number
   after?: string
   before?: string
@@ -20,16 +15,18 @@ export interface QueryParams {
 export const defaultParams: QueryParams = {
   currency: 'USD',
   periodicity: 'hourly',
-  lang: Languages.EN,
+  lang: 'en',
   size: 20,
-  after: undefined,
-  before: undefined,
   aggregate: true,
   contextFeature: 'job_feed'
 }
 
+export type OpportunityFilter =
+  | { boosted: string }
+  | { status: { code: string } }
+
 export interface RequestBody {
-  and?: object[]
+  and?: OpportunityFilter[]
 }
 
 export const defaultBody: RequestBody = {
@@ -45,16 +42,29 @@ export const defaultBody: RequestBody = {
   ]
 }
 
-interface Pagination {
+export interface Aggregators {
+  compensationrange?: object[]
+  language?: object[]
+  location?: object[]
+  organization?: object[]
+  remote?: object[]
+  skills?: object[]
+  status?: object[]
+  type?: object[]
+}
+
+export interface Pagination {
   next: string | null
   previous: string | null
 }
 
 export interface SearchResponse {
-  aggregators: any[]
+  aggregators: Aggregators
   offset: number
   pagination: Pagination
-  results: any[]
+  results: object[]
+  size: number
+  total: number
 }
 
 @Injectable({
@@ -67,36 +77,11 @@ export class OpportunitiesService {
   private buildQueryParams(queryParams: QueryParams): HttpParams {
     let params = new HttpParams()
 
-    if (queryParams.currency) {
-      params = params.set('currency', queryParams.currency)
-    }
-
-    if (queryParams.periodicity) {
-      params = params.set('periodicity', queryParams.periodicity)
-    }
-
-    if (queryParams.lang) {
-      params = params.set('lang', queryParams.lang)
-    }
-
-    if (queryParams.size !== undefined) {
-      params = params.set('size', queryParams.size.toString())
-    }
-    if (queryParams.after) {
-      params = params.set('after', queryParams.after)
-    }
-
-    if (queryParams.before) {
-      params = params.set('before', queryParams.before)
-    }
-
-    if (queryParams.aggregate !== undefined) {
-      params = params.set('aggregate', queryParams.aggregate.toString())
-    }
-
-    if (queryParams.contextFeature) {
-      params = params.set('contextFeature', queryParams.contextFeature)
-    }
+    Object.entries(queryParams).forEach(([key, value]) => {
+      if (value !== undefined) {
+        params = params.set(key, value.toString())
+      }
+    })
 
     return params
   }
