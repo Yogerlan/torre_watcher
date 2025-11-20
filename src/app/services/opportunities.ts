@@ -21,10 +21,10 @@ export const defaultParams: QueryParams = {
   contextFeature: 'job_feed'
 }
 
-export type OpportunityFilter =
-  | { boosted: string }
-  | { status: { code: string } }
-
+export interface OpportunityFilter {
+  boosted?: string
+  status?: { code: string }
+}
 export interface RequestBody {
   and?: OpportunityFilter[]
 }
