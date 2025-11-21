@@ -31,8 +31,10 @@
     "@fontsource/roboto": "^5.2.8",
     "@fortawesome/fontawesome-free": "^7.1.0",
     "mdb-ui-kit": "git+https://oauth2:f9txXFuyyKsjCdUYjzw9@git.mdbootstrap.com/mdb/standard/mdb-ui-kit-pro-advanced",
+    "ollama": "^0.6.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "zod-to-json-schema": "^3.25.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {

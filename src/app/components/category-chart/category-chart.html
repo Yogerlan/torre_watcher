@@ -1,0 +1,10 @@
+<section [id]="toKebabCase(category.name)" class="mt-5">
+    <h2 class="mb-4">{{ category.name }}</h2>
+    <p>
+        <strong>{{ category.skills.length }}</strong> skills in this category.
+        <strong>{{ category.total }}</strong> mentions in job posts.
+    </p>
+    <section class="border p-4 mb-4 rounded-5 d-flex justify-content-center">
+        <canvas [id]="toKebabCase(category.name) + '-chart'"></canvas>
+    </section>
+</section>

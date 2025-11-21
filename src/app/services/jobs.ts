@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { defaultJobsBody, defaultJobsParams, JobSearchResponse, JobsQueryParams, JobsRequestBody } from '../schemas/JobsSchemas'
+import { defaultJobsBody, defaultJobsParams, JobsQueryParams, JobsRequestBody, JobsSearchResponse } from '../schemas/JobsSchemas'
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +24,7 @@ export class JobsService {
   async search(
     queryParams: JobsQueryParams = defaultJobsParams,
     requestBody: JobsRequestBody = defaultJobsBody
-  ): Promise<JobSearchResponse | null> {
+  ): Promise<JobsSearchResponse | null> {
     console.log('Searching with params:', queryParams)
     console.log('Searching with body:', requestBody)
 
@@ -33,8 +33,8 @@ export class JobsService {
     const body = requestBody
 
     return new Promise(resolve => {
-      this.http.post<JobSearchResponse>(url, body, { params }).subscribe({
-        next: (response: JobSearchResponse) => {
+      this.http.post<JobsSearchResponse>(url, body, { params }).subscribe({
+        next: (response: JobsSearchResponse) => {
           console.log('Search response:', response)
 
           resolve(response)
