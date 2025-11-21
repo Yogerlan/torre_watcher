@@ -2,12 +2,12 @@
 
 <div>
     <ul>
-        <li *ngFor="let opportunity of opportunities; let i = index">
+        <li *ngFor="let job of jobs; let i = index">
             <div class="card" style="width: 18rem;">
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
-                    <h5 class="card-title">{{opportunity.objective}}</h5>
-                    <p class="card-text">{{opportunity.tagline}}</p>
+                    <h5 class="card-title">{{job.objective}}</h5>
+                    <p class="card-text">{{job.tagline}}</p>
                     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 </div>
             </div>
