@@ -1,5 +1,5 @@
-import { z } from "zod"
-import { JobsSkill } from "./JobsSchemas"
+import { z } from 'zod'
+import { JobsSkill } from './JobsSchemas'
 
 export const SkillsCategoriesSchema = z.object({
   categories: z.array(z.object({
