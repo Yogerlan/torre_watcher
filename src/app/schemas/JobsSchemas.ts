@@ -1,12 +1,12 @@
 export interface JobsQueryParams {
-  currency?: string;
-  periodicity?: string;
-  lang?: string;
-  size?: number;
-  after?: string;
-  before?: string;
-  aggregate?: boolean;
-  contextFeature?: string;
+  currency?: string
+  periodicity?: string
+  lang?: string
+  size?: number
+  after?: string
+  before?: string
+  aggregate?: boolean
+  contextFeature?: string
 }
 
 export const defaultJobsParams: JobsQueryParams = {
@@ -40,31 +40,31 @@ export const defaultJobsBody: JobsRequestBody = {
   ]
 }
 
-export interface JobSkill {
+export interface JobsSkill {
   total: number
   value: string
 }
 
-export interface JobAggregators {
+export interface JobsAggregators {
   compensationrange?: object[]
   language?: object[]
   location?: object[]
   organization?: object[]
   remote?: object[]
-  skills?: JobSkill[]
+  skill?: JobsSkill[]
   status?: object[]
   type?: object[]
 }
 
-export interface JobPagination {
+export interface JobsPagination {
   next: string | null
   previous: string | null
 }
 
-export interface JobSearchResponse {
-  aggregators: JobAggregators
+export interface JobsSearchResponse {
+  aggregators: JobsAggregators
   offset: number
-  pagination: JobPagination
+  pagination: JobsPagination
   results: object[]
   size: number
   total: number
