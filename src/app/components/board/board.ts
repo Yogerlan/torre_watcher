@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { Component, OnInit } from '@angular/core'
-import { OpportunitiesService } from '../../services/opportunities'
+import { JobsService } from '../../services/jobs'
 
 @Component({
   selector: 'app-board',
@@ -9,12 +9,12 @@ import { OpportunitiesService } from '../../services/opportunities'
   styleUrl: './board.css',
 })
 export class BoardComponent implements OnInit {
-  opportunities: any[] | null = null
+  jobs: any[] | null = null
 
-  constructor(private opportunitiesService: OpportunitiesService) { }
+  constructor(private jobsService: JobsService) { }
 
   async ngOnInit() {
-    const search = await this.opportunitiesService.search()
-    this.opportunities = search?.results || []
+    const search = await this.jobsService.search()
+    this.jobs = search?.results || []
   }
 }
