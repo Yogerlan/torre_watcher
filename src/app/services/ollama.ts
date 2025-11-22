@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'
+import { DOCUMENT, Inject, Injectable } from '@angular/core'
 import { Ollama } from 'ollama/browser'
 import zodToJsonSchema from 'zod-to-json-schema'
 import { SkillsCategoriesSchema, SkillsCategory } from '../schemas/AISchemas'
@@ -10,8 +10,15 @@ import { JobsSkill } from '../schemas/JobsSchemas'
 export class OllamaService {
   private client: Ollama
 
-  constructor() {
-    this.client = new Ollama()
+  constructor(@Inject(DOCUMENT) private document: Document) {
+    let host = this.document.location.origin
+
+    // Development server
+    if (host === 'http://localhost:4200') {
+      host = 'http://localhost:11434'
+    }
+
+    this.client = new Ollama({ host })
   }
 
   async getSkillsCategories(skills: JobsSkill[]): Promise<SkillsCategory[]> {
