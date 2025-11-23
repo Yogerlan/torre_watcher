@@ -11,7 +11,7 @@ import { JobsSkill } from '../schemas/JobsSchemas'
 export class OllamaService {
   private client: Ollama
   private config = environment.production ?
-    { host: document.location.origin } : undefined;
+    { host: window.document.location.origin } : undefined;
 
   constructor() {
     this.client = new Ollama(this.config)
