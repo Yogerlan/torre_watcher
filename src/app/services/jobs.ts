@@ -1,12 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
+import { environment } from '../../environments/environment'
 import { defaultJobsBody, defaultJobsParams, JobsQueryParams, JobsRequestBody, JobsSearchResponse } from '../schemas/JobsSchemas'
 
 @Injectable({
   providedIn: 'root',
 })
 export class JobsService {
-  private baseUrl = 'https://search.torre.co/opportunities'
   constructor(private http: HttpClient) { }
 
   private buildQueryParams(queryParams: JobsQueryParams): HttpParams {
@@ -28,7 +28,7 @@ export class JobsService {
     console.log('Searching with params:', queryParams)
     console.log('Searching with body:', requestBody)
 
-    const url = `${this.baseUrl}/_search`
+    const url = `${environment.jobsUrl}/_search`
     const params = this.buildQueryParams(queryParams)
     const body = requestBody
 
